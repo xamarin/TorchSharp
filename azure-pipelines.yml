@@ -36,8 +36,7 @@ steps:
 
 - script: |
     dotnet pack
-    cp orchSharp/bin/Debug/*.nupkg $BUILD_ARTIFACTSTAGINGDIRECTORY
-    /home/vsts/work/1/s/Tester/bin/Debug/Tester.1.0.0.nupkg
+    cp TorchSharp/bin/Debug/*.nupkg $BUILD_ARTIFACTSTAGINGDIRECTORY
   displayName: Create Nuget
 
 - script: |
