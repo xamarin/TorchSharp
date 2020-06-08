@@ -10,8 +10,6 @@
 
 // API.
 
-// Creates 1-D tensor of size [(end - start) / step] with values from interval [start, end) with common
-// difference step starting from start.
 EXPORT_API(Tensor) THSTensor_arange(
     const Scalar start,
     const Scalar end,
@@ -20,7 +18,12 @@ EXPORT_API(Tensor) THSTensor_arange(
     const char * device,
     const bool requires_grad);
 
-//  Creates  a variable tensor containing a tensor composed of zeros.
+EXPORT_API(Tensor) THSTensor_randperm(
+    const int64_t n,
+    const int8_t scalar_type,
+    const char* device,
+    const bool requires_grad);
+
 EXPORT_API(Tensor) THSTensor_zeros(
     const int64_t * sizes,
     const int length,
@@ -28,7 +31,6 @@ EXPORT_API(Tensor) THSTensor_zeros(
     const char * device,
     const bool requires_grad);
 
-//  Creates  a variable tensor containing a tensor composed of ones.
 EXPORT_API(Tensor) THSTensor_ones(
     const int64_t * sizes,
     const int length,
@@ -36,7 +38,6 @@ EXPORT_API(Tensor) THSTensor_ones(
     const char * device,
     const bool requires_grad);
 
-//  Creates  a variable tensor containing a an empty tensor.
 EXPORT_API(Tensor) THSTensor_empty(
     const int64_t * sizes,
     const int length,
@@ -44,7 +45,6 @@ EXPORT_API(Tensor) THSTensor_empty(
     const char * device,
     const bool requires_grad);
 
-//  Creates  a variable tensor out of the input data, dimensions and strides.
 EXPORT_API(Tensor) THSTensor_new(
     void * data,
     void (*deleter)(void*),
@@ -60,34 +60,24 @@ EXPORT_API(Tensor) THSTensor_newLong(
     const int szlength,
     const bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newSByteScalar(int8_t data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newByteScalar(char data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newBoolScalar(bool data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newHalfScalar(c10::Half data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newShortScalar(short data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newIntScalar(int data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newLongScalar(int64_t data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newDoubleScalar(double data, bool requires_grad);
 
-//  Creates  a variable tensor wrapping the input scalar.
 EXPORT_API(Tensor) THSTensor_newFloatScalar(float data, bool requires_grad);
 
-// Returns a variable tensor filled with random numbers from a uniform distribution within [0, 1).
 EXPORT_API(Tensor) THSTensor_rand(
     const int64_t * sizes,
     const int length,
@@ -95,7 +85,6 @@ EXPORT_API(Tensor) THSTensor_rand(
     const char * device,
     const bool requires_grad);
 
-// Returns a variable tensor filled with random numbers from a uniform distribution within [0, 1).
 EXPORT_API(Tensor) THSTensor_randint(
     const int64_t max,
     const int64_t* sizes,
@@ -311,6 +300,15 @@ EXPORT_API(Tensor) THSTensor_argmin(const Tensor tensor);
 EXPORT_API(Tensor) THSTensor_argminT(const Tensor twrapper, const int64_t dimension, bool keepDim);
 
 EXPORT_API(Tensor) THSTensor_relu(const Tensor tensor);
+EXPORT_API(Tensor) THSTensor_bernoulli(const Tensor tensor, const double p);
+EXPORT_API(Tensor) THSTensor_bernoulli_(const Tensor tensor, const double p);
+EXPORT_API(Tensor) THSTensor_cauchy_(const Tensor tensor, const double median, const double sigma);
+EXPORT_API(Tensor) THSTensor_exponential_(const Tensor tensor, const double lambd);
+EXPORT_API(Tensor) THSTensor_geometric_(const Tensor tensor, const double p);
+EXPORT_API(Tensor) THSTensor_log_normal_(const Tensor tensor, const double mean, const double std);
+EXPORT_API(Tensor) THSTensor_normal_(const Tensor tensor, const double mean, const double std);
+EXPORT_API(Tensor) THSTensor_uniform_(const Tensor tensor, const double from, const double to);
+EXPORT_API(Tensor) THSTensor_multinomial(const Tensor tensor, const double num_samples, const bool replacement);
 EXPORT_API(Tensor) THSTensor_sin(const Tensor tensor);
 EXPORT_API(Tensor) THSTensor_cos(const Tensor tensor);
 EXPORT_API(Tensor) THSTensor_tan(const Tensor tensor);
