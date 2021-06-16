@@ -137,7 +137,7 @@
   </Target>
 
   <Target Name="CopyFilesFromArchive" DependsOnTargets="ValidateAndExtractArchives" Inputs="$(ExtractSemaphore)" Outputs="$(CopyToPackageSemaphore)">
-    <Message Importance="High" Text="Copy @(File) -> $(MainPackageFolder)\runtimes\$(TargetRuntimeID)\native\" />
+    <Message Importance="High" Text="Copy @(File) -> $(MainPackageFolder)\runtimes\$(TargetRuntimeID)\native\" Condition="'$(IncludeLibTorchCpuPackage)' == 'true'" />
 
     <!-- Copy to MainPackageFolder to use in libtorch-cpu package build -->
     <Copy SourceFiles="$(ExtractDirectory)\%(File.Identity)" DestinationFolder="$(MainPackageFolder)\runtimes\$(TargetRuntimeID)\native\" SkipUnchangedFiles="true" Condition="'$(IncludeLibTorchCpuPackage)' == 'true' "/>

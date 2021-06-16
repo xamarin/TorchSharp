@@ -117,7 +117,7 @@ namespace TorchSharp
 
                 Trace.WriteLine($"TorchSharp: LoadNativeBackend: Loaded LibTorchSharp, ok = {ok}");
                 // Try dynamic load from package directories
-                var cpuRootPackage = "libtorch-cpu";
+                var cpuRootPackage = $"libtorch-cpu-{nativeRid}";
                 var cudaRootPackage = $"libtorch-cuda-{cudaVersion}-{nativeRid}";
                 if (!ok) {
 
